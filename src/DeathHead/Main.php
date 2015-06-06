@@ -22,6 +22,7 @@ $this->api = EconomyAPI::getInstance();
 
 public function onDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
+  $item = $event->getItem("91")
         if($cause instanceof EntityDamageByEntityEvent) {
             $player = $event->getEntity()
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
