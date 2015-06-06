@@ -18,9 +18,10 @@ class Main extends PluginBase implements Listener{
 public function onEnable(){
 $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
+$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
 if (!$this->money) {
-	$this->getLogger()->info(TextFormat::RED."Unable to find EconomyAPI.");
+	$this->getLogger()->info(TextFormat::BLUE.["DeathHead]" . TectFormat::RED . "Unable to find EconomyAPI.");
 	return true;
 	}
 }
