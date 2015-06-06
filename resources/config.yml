@@ -1,2 +1,7 @@
-//How Much Get Paid To Kill:
-paid-amount: $25
+// DeathHead by Jaydenb132 (with help by SavionLegendZzz, ItzBulkDev and MinecrafterPH)
+
+// Amount paid per kill.
+paid-amount: 25
+
+// Amount lost per death.
+lost-amount: 10
