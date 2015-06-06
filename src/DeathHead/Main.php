@@ -45,17 +45,4 @@ public function onDeath(PlayerDeathEvent $event){
                 }
         }
 }
-public function onTouch(PlayerInteractEvent $event){
-            $player = $event->getPlayer()->getName();
-            $item = $event->getItem()->getName();
-            $config = $this->getConfig();
-	    if($item == "91") {
-	        $id = 91;
-                $damage = 0;
-                $count = 1;
-                $item =  Item::get($id, $damage, $count);
-                $player->getInventory()->addItem($item);
-                $player->sendMessage("You can sell this for" . $config->get("paid-amount") . "!");
-         }
-     }
 }
