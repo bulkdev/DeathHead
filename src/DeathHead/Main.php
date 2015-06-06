@@ -21,7 +21,7 @@ $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead ha
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
 if (!$this->money) {
-	$this->getLogger()->info(TextFormat::BLUE.["DeathHead]" . TectFormat::RED . "Unable to find EconomyAPI.");
+	$this->getLogger()->info(TextFormat::BLUE. "[DeathHead]" . TectFormat::RED . "Unable to find EconomyAPI.");
 	return true;
 	}
 }
