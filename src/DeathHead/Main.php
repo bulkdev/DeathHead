@@ -35,10 +35,10 @@ public function onDeath(PlayerDeathEvent $event){
                 $killer->sendMessage($message);
                 $killer->getInventory()->addItem($item);
                 $killer->sendMessage(TextFormat::RED."You killed $player.\n");
-                $killer->sendMessage(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for getting a kill.")
+                $killer->sendMessage(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for getting a kill.");
                     
 		$player->sendMessage(TextFormat::RED."You were killed by $killer.");
-		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed.")
+		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed.");
 		
 		$this->money->addMoney($damager, $config->get("paid-amount"));
                 $this->money->reduceMoney($player, $config->get("lose-amount"));
