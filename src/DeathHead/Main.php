@@ -19,6 +19,10 @@ public function onEnable(){
 $this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
 $this->money = EconomyAPI::getInstance();
+if (!$this->api) {
+	$this->getLogger()->info(TextFormat::RED."Unable to find EconomyAPI.");
+	return true;
+	}
 }
 
 public function onDeath(PlayerDeathEvent $event){
