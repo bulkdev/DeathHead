@@ -4,4 +4,4 @@
 paid-amount: 25
 
 // Amount lost per death.
-lost-amount: 10
+lost-amount: 25
