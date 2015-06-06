@@ -5,6 +5,7 @@ namespace DeathHead;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\event\PlayerDeathEvent;
+use pocketmine\event\PlayerInteractEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -16,7 +17,7 @@ class Main extends PluginBase{
 
 public function onEnable(){
 // maybe we dont need this?$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
-$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead]DeathHead Enabled");
+$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
 $this->api = EconomyAPI::getInstance();
 }
 
@@ -29,10 +30,10 @@ public function onDeath(PlayerDeathEvent $event){
             if($killer instanceof Player) {
                     $killer->sendMessage($message);
                     $killer->getInventory()->addItem($item);
-                    $damager->sendMessage("You killed $player.\nYou earn $" . $config->get("paid-amount") . " for getting a kill.");
-			$player->sendMessage("You were killed by $damager.\nYou lose $" . $config->get("paid-amount") . " for getting killed.");
+                    $killer->sendMessage("You killed $player.\nYou earn $" . $config->get("paid-amount") . " for getting a kill.");
+			$player->sendMessage("You were killed by $killer.\nYou lose $" . $config->get("lose-amount") . " for getting killed.");
 			$this->api->setMoney($damager, $config->get("paid-amount"));
-			$this->api->reduceMoney($player, $config->get("paid-amount"));
+			$this->api->reduceMoney($player, $config->get("lose-amount"));
                 }
 }
 }
