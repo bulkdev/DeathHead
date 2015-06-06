@@ -5,6 +5,7 @@ namespace DeathHead;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\event\PlayerDeathEvent;
+use pocketmine\event\PlayerInteractEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
@@ -12,12 +13,16 @@ use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\TextFormat;
 
-class Main extends PluginBase{
+class Main extends PluginBase implements Listener{
 
 public function onEnable(){
-// maybe we dont need this?$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
-$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead]DeathHead Enabled");
-$this->api = EconomyAPI::getInstance();
+$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
+$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
+$this->money = EconomyAPI::getInstance();
+if (!$this->money) {
+	$this->getLogger()->info(TextFormat::RED."Unable to find EconomyAPI.");
+	return true;
+	}
 }
 
 public function onDeath(PlayerDeathEvent $event){
@@ -27,14 +32,18 @@ public function onDeath(PlayerDeathEvent $event){
             $player = $event->getEntity();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
-                    $killer->sendMessage($message);
-                    $killer->getInventory()->addItem($item);
-                    $damager->sendMessage("You killed $player.\nYou earn $" . $config->get("paid-amount") . " for getting a kill.");
-			$player->sendMessage("You were killed by $damager.\nYou lose $" . $config->get("paid-amount") . " for getting killed.");
-			$this->api->setMoney($damager, $config->get("paid-amount"));
-			$this->api->reduceMoney($player, $config->get("paid-amount"));
+                $killer->sendMessage($message);
+                $killer->getInventory()->addItem($item);
+                $killer->sendMessage(TextFormat::RED."You killed $player.\n");
+                $killer->sendMessage(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for getting a kill.")
+                    
+		$player->sendMessage(TextFormat::RED."You were killed by $killer.");
+		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed.")
+		
+		$this->money->addMoney($damager, $config->get("paid-amount"));
+                $this->money->reduceMoney($player, $config->get("lose-amount"));
                 }
-}
+        }
 }
 public function onTouch(PlayerInteractEvent $event){
             $player = $event->getPlayer()->getName();
