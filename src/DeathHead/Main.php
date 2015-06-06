@@ -27,7 +27,7 @@ public function onDeath(PlayerDeathEvent $event){
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
                     $killer->sendMessage($message);
-                    $sender->getInventory()->addItem($item);
+                    $killer->getInventory()->addItem($item);
                     $damager->sendMessage("You killed $player.\nYou earn $" . $config->get("paid-amount") . for getting a kill.");
 			$player->sendMessage("You were killed by $damager.\nYou lose $" . $config->get("paid-amount") . " for getting killed.");
 			$this->api->setMoney($damager, $config->get("paid-amount");
