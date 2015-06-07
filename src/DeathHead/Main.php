@@ -11,6 +11,7 @@ use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
+use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
 
 class Main extends PluginBase implements Listener{
