@@ -14,6 +14,7 @@ use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
+use pocketmine\inventory\BaseInventory;
 
 class Main extends PluginBase implements Listener {
 
