@@ -12,7 +12,7 @@ use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\TextFormat;
-use pocketmine\utils\Config
+use pocketmine\utils\Config;
 
 class Main extends PluginBase implements Listener{
 
