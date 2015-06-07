@@ -33,7 +33,6 @@ public function onDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
         if($cause instanceof EntityDamageByEntityEvent) {
             $player = $event->getEntity();
-            $config = $this->getConfig();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             $paid = $config->get("paid-amount");
             $lost = $config->get("lost-amount");
