@@ -38,9 +38,9 @@ public function onDeath(PlayerDeathEvent $event){
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
                 $killer->getInventory()->addItem($item);
-                $killer->sendPopup(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for killing" . $player . ".");
+                $killer->sendPopup(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for killing " . $player . ".");
                     
-		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed by" . $killer. ".");
+		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed by " . $killer. ".");
 		
 		$this->money->addMoney($damager, $config->get("paid-amount"));
                 $this->money->reduceMoney($player, $config->get("lose-amount"));
