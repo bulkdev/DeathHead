@@ -3,7 +3,6 @@
 namespace DeathHead;
 
 use pocketmine\Server;
-use pocketmine\inventory\Inventory;
 use pocketmine\Player;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerInteractEvent;
@@ -14,7 +13,6 @@ use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
-use pocketmine\inventory\BaseInventory;
 
 class Main extends PluginBase implements Listener {
 
@@ -36,7 +34,7 @@ public function onDeath(PlayerDeathEvent $event){
             $player = $event->getEntity();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
-                $killer->getInventory()->addItem("91");
+                $killer->getInventory()->addItem(Item::getT("91"));
                 $killer->sendPopup(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for killing" . $player . ".");
                     
 		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed by" . $killer. ".");
