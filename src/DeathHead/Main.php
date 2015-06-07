@@ -5,14 +5,15 @@ namespace DeathHead;
 use pocketmine\Server;
 use pocketmine\Player;
 use pocketmine\inventory\Inventory;
+use pocketmine\inventory\BaseInventory;
+use pocketmine\event\Listener;
 use pocketmine\event\PlayerDeathEvent;
 use pocketmine\event\PlayerInteractEvent;
-use pocketmine\plugin\PluginBase;
-use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
+use pocketmine\plugin\PluginBase;
 use pocketmine\item\Item;
-use onebone\economyapi\EconomyAPI;
 use pocketmine\utils\TextFormat;
+use onebone\economyapi\EconomyAPI;
 
 class Main extends PluginBase implements Listener{
 
