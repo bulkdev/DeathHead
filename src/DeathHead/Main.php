@@ -3,6 +3,7 @@
 namespace DeathHead;
 
 use pocketmine\Server;
+pocketmine\inventory\Inventory;
 use pocketmine\Player;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerInteractEvent;
