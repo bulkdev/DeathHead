@@ -11,15 +11,14 @@ use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
 use pocketmine\item\Item;
 use onebone\economyapi\EconomyAPI;
-use pocketmine\utils\Config;
 use pocketmine\utils\TextFormat;
+use pocketmine\utils\Config
 
 class Main extends PluginBase implements Listener{
 
 public function onEnable(){
-$this->saveDefaultConfig();
-$config = $this->getConfig();
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
+$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
@@ -28,11 +27,6 @@ if (!$this->money) {
 	return true;
 	}
 }
-    public function onDisable(){
-      	$this->saveDefaultConfig();
-      	$this->getServer()->getPluginManager()->registerEvents($this, $this);
-      	$this->getLogger()->info(TEXTFORMAT::LIGHT_PURPLE . "[DeathHead] Death Head has been Disabled!");
-      }
 
 public function onDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
