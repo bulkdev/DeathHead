@@ -33,6 +33,7 @@ public function onDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
         if($cause instanceof EntityDamageByEntityEvent) {
             $player = $event->getEntity();
+            $config = $this->getConfig();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
                 $killer->getInventory()->addItem(Item::get("91"));
