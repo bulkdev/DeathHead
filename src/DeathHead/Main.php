@@ -4,8 +4,8 @@ namespace DeathHead;
 
 use pocketmine\Server;
 use pocketmine\Player;
-use pocketmine\event\PlayerDeathEvent;
-use pocketmine\event\PlayerInteractEvent;
+use pocketmine\event\player\PlayerDeathEvent;
+use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\event\Listener;
 use pocketmine\event\entity\EntityDamageByEntityEvent;
