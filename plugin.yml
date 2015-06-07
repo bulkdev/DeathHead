@@ -1,7 +1,7 @@
 name: DeathHead
 author: ItzBulkDev/SavionLegendZzz
 version: 1.0
-main: Main
+main: DeathHead\Main
 api: [1.0.0]
 Dependency: EconomyAPI
 website: https://github.com/Jaydenb132/DeathHead
