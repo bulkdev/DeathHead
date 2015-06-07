@@ -16,11 +16,13 @@ use pocketmine\utils\TextFormat;
 class Main extends PluginBase implements Listener{
 
 public function onEnable(){
-$this->config = new Config($this->getDataFolder() . "config.yml", Config::YAML, array());
+$this->getServer()->getPluginManager()->registerEvents($this, $this);
+$this->saveDefaultConfig();
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
+$this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
 if (!$this->money) {
-	$this->getLogger()->info(TextFormat::RED."Unable to find EconomyAPI.");
+	$this->getLogger()->info(TextFormat::BLUE. "[DeathHead]" . TextFormat::RED . "Unable to find EconomyAPI.");
 	return true;
 	}
 }
@@ -32,30 +34,14 @@ public function onDeath(PlayerDeathEvent $event){
             $player = $event->getEntity();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             if($killer instanceof Player) {
-                $killer->sendMessage($message);
                 $killer->getInventory()->addItem($item);
-                $killer->sendMessage(TextFormat::RED."You killed $player.\n");
-                $killer->sendMessage(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for getting a kill.")
+                $killer->sendPopup(TextFormat::GREEN."You earn $" . $config->get("paid-amount") . " for killing" . $player . ".");
                     
-		$player->sendMessage(TextFormat::RED."You were killed by $killer.");
-		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed.")
+		$player->sendMessage(TextFormat::RED."You lose $" . $config->get("lose-amount") . " for getting killed by" . $killer. ".");
 		
 		$this->money->addMoney($damager, $config->get("paid-amount"));
                 $this->money->reduceMoney($player, $config->get("lose-amount"));
                 }
         }
 }
-public function onTouch(PlayerInteractEvent $event){
-            $player = $event->getPlayer()->getName();
-            $item = $event->getItem()->getName();
-            $config = $this->getConfig();
-	    if($item == "91") {
-	        $id = 91;
-                $damage = 0;
-                $count = 1;
-                $item =  Item::get($id, $damage, $count);
-                $player->getInventory()->addItem($item);
-                $player->sendMessage("You can sell this for" . $config->get("paid-amount") . "!");
-         }
-     }
 }
