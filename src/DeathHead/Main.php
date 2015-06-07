@@ -19,6 +19,7 @@ class Main extends PluginBase implements Listener{
 public function onEnable(){
 $this->getServer()->getPluginManager()->registerEvents($this, $this);
 $this->saveDefaultConfig();
+$config = $this->getConfig();
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
@@ -33,8 +34,6 @@ public function onDeath(PlayerDeathEvent $event){
         if($cause instanceof EntityDamageByEntityEvent) {
             $player = $event->getEntity();
             $killer = $event->getEntity()->getLastDamageCause()->getDamager();
-            
-            $config = $this->getConfig();
             $paid = $config->get("paid-amount");
             $lost = $config->get("lost-amount");
             if($killer instanceof Player) {
