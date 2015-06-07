@@ -18,6 +18,7 @@ class Main extends PluginBase implements Listener{
 public function onEnable(){
 $this->saveDefaultConfig();
 $config = $this->getConfig();
+$this->getServer()->getPluginManager()->registerEvents($this, $this);
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] DeathHead has been enabled!");
 $this->getServer()->getLogger()->info(TextFormat::BLUE."[DeathHead] Created by ItzBulkDev. Helped by SavionLegendZzz and MinecrafterPH");
 $this->money = EconomyAPI::getInstance();
