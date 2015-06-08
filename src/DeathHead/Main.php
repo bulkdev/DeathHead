@@ -29,7 +29,7 @@ if (!$this->money) {
 	}
 }
 
-public function onDeath(PlayerDeathEvent $event){
+public function onPlayerDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
         if($cause instanceof EntityDamageByEntityEvent) {
             $player = $event->getEntity();
