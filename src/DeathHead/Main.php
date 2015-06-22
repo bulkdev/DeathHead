@@ -32,17 +32,17 @@ if (!$this->money) {
 public function onPlayerDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
         if($cause instanceof EntityDamageByEntityEvent) {
-            $player = $event->getEntity()->getPlayer()->getName();
-            $killer = $event->getEntity()->getLastDamageCause()->getDamager()->getPlayer()->getName();
+            $player = $event->getEntity();
+            $killer = $event->getEntity()->getLastDamageCause()->getDamager();
             $paid = $config->get("paid-amount");
             $lost = $config->get("lost-amount");
             if($killer instanceof Player) {
                 $killer->getInventory()->addItem(Item::get("91"));
-                $killer->sendPopup(TextFormat::GREEN."You earn $" . $paid . " for killing" . $player . ".");
+                $killer->sendPopup(TextFormat::GREEN."You earn $" . $paid . " for killing" . $player->getPlayer()>getName() . ".");
                     
-		$player->sendMessage(TextFormat::RED."You lose $" . $lost . " for getting killed by" . $killer. ".");
+		$player->sendMessage(TextFormat::RED."You lose $" . $lost . " for getting killed by" . $killer->getPlayer()->getName(). ".");
 		
-		$this->money->addMoney($damager, $config->get("paid-amount"));
+		$this->money->addMoney($killer, $config->get("paid-amount"));
                 $this->money->reduceMoney($player, $config->get("lose-amount"));
                 }
         }
