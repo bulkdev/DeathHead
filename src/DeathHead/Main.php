@@ -32,8 +32,8 @@ if (!$this->money) {
 public function onPlayerDeath(PlayerDeathEvent $event){
   $cause = $event->getEntity()->getLastDamageCause();
         if($cause instanceof EntityDamageByEntityEvent) {
-            $player = $event->getEntity();
-            $killer = $event->getEntity()->getLastDamageCause()->getDamager();
+            $player = $event->getEntity()->getPlayer()->getName();
+            $killer = $event->getEntity()->getLastDamageCause()->getDamager()->getPlayer()->getName();
             $paid = $config->get("paid-amount");
             $lost = $config->get("lost-amount");
             if($killer instanceof Player) {
