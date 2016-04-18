@@ -40,7 +40,7 @@ $config = $this->getConfig();
             $popups = $config->get("Enable-Popups")
             $enabled = $config->get("Enable-Money");
             if($killer instanceof Player and $enabled == true and $popups == true) {
-                $killer->getInventory()->addItem(Item::get("91"));
+                $killer->getInventory()->addItem(Item::get(144:3, 0, 1));
                 $killer->sendPopup(TextFormat::GREEN."You earn $" . $paid . " for killing" . $player->getPlayer()->getName() . ".");
                     
 		$player->sendMessage(TextFormat::RED."You lose $" . $lost . " for getting killed by" . $killer->getPlayer()->getName(). ".");
