@@ -40,7 +40,7 @@ $config = $this->getConfig();
             $popups = $config->get("Enable-Popups")
             $enabled = $config->get("Enable-Money");
             if($killer instanceof Player and $enabled == true and $popups == true) {
-$killer->getInventory()->setItemInHand(Item::get(144:3, 0, 1));
+$killer->getInventory()->setItemInHand(Item::get(144, 3, 1));
 $killer->getInventory()->getItemInHand()->setCustomName(TextFormat::LIGHT_PURPLE."" . $player->getName() ."'s Head");
                 $killer->sendPopup(TextFormat::GREEN."You earn $" . $paid . " for killing" . $player->getPlayer()->getName() . ".");
                     
